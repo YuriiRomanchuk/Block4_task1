@@ -1,24 +1,24 @@
 package notebook.validators;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NumberUserDataValidator implements UserDataValidator {
 
     private static final String regex = "([0-9]+)";
-    private List<String> fieldsName = new ArrayList<>();
+    private Map<String, Boolean> obligatoryFieldsName = new HashMap<>();
 
     public NumberUserDataValidator() {
-        fieldsName.add("homePhoneNumber");
-        fieldsName.add("mobilePhoneNumber");
-        fieldsName.add("mobilePhoneNumberSecond");
+        obligatoryFieldsName.put("homePhoneNumber", true);
+        obligatoryFieldsName.put("mobilePhoneNumber", true);
+        obligatoryFieldsName.put("mobilePhoneNumberSecond", false);
     }
 
     public String getRegex() {
         return regex;
     }
 
-    public List<String> getFieldsName() {
-        return fieldsName;
+    public Map<String, Boolean> getObligatoryFieldsName() {
+        return obligatoryFieldsName;
     }
 }

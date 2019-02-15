@@ -1,13 +1,14 @@
 package notebook.validators;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserDataValidator {
 
     String regex = "";
-    List<String> fieldsName = null;
+    Map<String, Boolean> obligatoryFieldsName = null;
 
-    List<String> getFieldsName();
+    Map<String, Boolean> getObligatoryFieldsName();
 
     String getRegex();
 }

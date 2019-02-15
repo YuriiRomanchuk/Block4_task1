@@ -21,14 +21,16 @@ public class PrepareDataController {
 
         for (Supplier<UserDataValidator> userDataValidatorSupplier : supplierValidator) {
             UserDataValidator userDataValidator = userDataValidatorSupplier.get();
-            for (String fieldName : userDataValidator.getFieldsName()) {
-                userData.put(fieldName, ValidateInputValue(fieldName, userDataValidator.getRegex()));
+            for (Map.Entry<String, Boolean> entry : userDataValidator.getObligatoryFieldsName().entrySet()) {
+                String fieldName = entry.getKey();
+                Boolean obligatoryField = entry.getValue();
+                userData.put(fieldName, ValidateInputValue(fieldName, userDataValidator.getRegex(), obligatoryField));
             }
         }
         return userData;
     }
 
-    private String ValidateInputValue(String fieldName, String regex) {
+    private String ValidateInputValue(String fieldName, String regex, boolean obligatoryField) {
 
         viewDataController.printInputFieldData(fieldName);
 
@@ -37,7 +39,7 @@ public class PrepareDataController {
 
         while (!correctValue) {
             fieldData.append(viewDataController.inputStringValue(fieldName));
-            correctValue = fieldData.toString().matches(regex);
+            correctValue = obligatoryField ? fieldData.toString().matches(regex) : true;
             if (!correctValue) {
                 fieldData.setLength(0);
                 viewDataController.printWrongInputData(fieldName);

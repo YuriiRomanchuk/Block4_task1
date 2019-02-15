@@ -35,7 +35,6 @@ public class ViewDataController {
         while (!in.hasNext()) {
             printWrongInputData(fieldName);
         }
-
         return in.next();
     }
 

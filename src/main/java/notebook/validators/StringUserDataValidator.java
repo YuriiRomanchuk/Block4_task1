@@ -1,24 +1,24 @@
 package notebook.validators;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StringUserDataValidator implements UserDataValidator {
 
     private final String regex = "([A-Za-z]+)";
-    private List<String> fieldsName = new ArrayList<>();
+    private Map<String, Boolean> obligatoryFieldsName = new HashMap<>();
 
     public StringUserDataValidator() {
-        fieldsName.add("lastName");
-        fieldsName.add("firstName");
-        fieldsName.add("middleName");
+        obligatoryFieldsName.put("lastName", true);
+        obligatoryFieldsName.put("firstName", true);
+        obligatoryFieldsName.put("middleName", true);
     }
 
     public String getRegex() {
         return regex;
     }
 
-    public List<String> getFieldsName() {
-        return fieldsName;
+    public Map<String, Boolean> getObligatoryFieldsName() {
+        return obligatoryFieldsName;
     }
 }
