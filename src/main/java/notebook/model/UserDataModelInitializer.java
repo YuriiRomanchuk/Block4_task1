@@ -54,7 +54,6 @@ public class UserDataModelInitializer {
         return fieldValue;
     }
 
-
     private String firstUpperCase(String word) {
 
         if (word == null || word.isEmpty()) {

@@ -5,17 +5,17 @@ import notebook.enums.Groups;
 public class UserDataModel {
 
     private String lastName;
-    private  String firstName;
-    private  String middleName;
+    private String firstName;
+    private String middleName;
     private String fullName;
     private String nickname;
-    private  String comment;
+    private String comment;
     private Groups groupName;
     private String skype;
-    private  String email;
-    private  String homePhoneNumber;
+    private String email;
+    private String homePhoneNumber;
     private String mobilePhoneNumber;
-    private  String mobilePhoneNumberSecond;
+    private String mobilePhoneNumberSecond;
 
 
     public void setFullName(String fullName) {
