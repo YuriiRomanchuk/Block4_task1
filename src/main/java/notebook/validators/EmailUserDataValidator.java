@@ -1,9 +1,22 @@
 package notebook.validators;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class EmailDataUserValidator {
+public class EmailUserDataValidator implements UserDataValidator {
 
-    private static final String regex = "(\w+@[a-zA-Z]+?\.[a-zA-Z]{2,6})";
-    private List<String> fieldsName;
+    private final String regex = "(\\w+@[a-zA-Z]+?\\.[a-zA-Z]{2,6})";
+    private List<String> fieldsName = new ArrayList<>();
+
+    public EmailUserDataValidator() {
+        fieldsName.add("email");
+    }
+
+    public String getRegex() {
+        return regex;
+    }
+
+    public List<String> getFieldsName() {
+        return fieldsName;
+    }
 }

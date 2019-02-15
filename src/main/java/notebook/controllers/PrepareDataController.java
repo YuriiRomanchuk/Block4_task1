@@ -1,4 +1,4 @@
-package notebook;
+package notebook.controllers;
 
 import notebook.validators.UserDataValidator;
 
