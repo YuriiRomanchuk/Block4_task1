@@ -1,15 +1,14 @@
-package notebook.initializers;
+package notebook.initializer;
 
-import notebook.controllers.PrepareDataController;
-import notebook.controllers.UserDataAggregateController;
-import notebook.controllers.ViewDataController;
-import notebook.models.UserDataAddress;
-import notebook.validators.UserDataValidator;
+import notebook.controller.PrepareDataController;
+import notebook.controller.UserDataAggregateController;
+import notebook.controller.ViewDataController;
+import notebook.model.UserDataAddress;
+import notebook.rule.UserDataRule;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
 public class UserDataAddressInitializer {
 
@@ -23,14 +22,14 @@ public class UserDataAddressInitializer {
         this.viewDataController = viewDataController;
     }
 
-    public List<UserDataAddress> initializeAddress(List<Supplier<UserDataValidator>> supplierAddressValidator) {
+    public List<UserDataAddress> initializeAddress(List<UserDataRule> supplierAddressValidator) {
 
         boolean continueCreateAddress = true;
 
         while (continueCreateAddress) {
             UserDataAddress userDataAddress = new UserDataAddress();
             Map<String, String> preparedUserDataAddress = prepareDataController.prepareUserData(supplierAddressValidator);
-            userDataAddressAggregateController.InitializeUserDataModel(userDataAddress, preparedUserDataAddress);
+            userDataAddressAggregateController.initializeUserDataModel(userDataAddress, preparedUserDataAddress);
             userDataAddresses.add(userDataAddress);
 
             if (!viewDataController.receiveAnswerAboutInputNewAddress()) {
@@ -40,5 +39,4 @@ public class UserDataAddressInitializer {
 
         return userDataAddresses;
     }
-
 }

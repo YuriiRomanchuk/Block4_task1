@@ -1,4 +1,4 @@
-package notebook.controllers;
+package notebook.controller;
 
 import java.io.InputStream;
 import java.util.Scanner;

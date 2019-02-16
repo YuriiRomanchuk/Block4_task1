@@ -1,20 +1,18 @@
 package notebook;
 
-import notebook.controllers.PrepareDataController;
-import notebook.controllers.ViewDataController;
-import notebook.initializers.UserDataAddressInitializer;
-import notebook.initializers.UserDataModelInitializer;
-import notebook.models.UserDataAddress;
-import notebook.models.UserDataModel;
-import notebook.validators.*;
+import notebook.controller.PrepareDataController;
+import notebook.controller.ViewDataController;
+import notebook.initializer.UserDataAddressInitializer;
+import notebook.initializer.UserDataModelInitializer;
+import notebook.model.UserDataAddress;
+import notebook.model.UserDataModel;
+import notebook.rule.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
 public class AccessPoint {
-
 
     private UserDataModelInitializer userDataModelInitializer;
     private ViewDataController viewDataController;
@@ -37,20 +35,20 @@ public class AccessPoint {
 
     }
 
-    private List<Supplier<UserDataValidator>> receiveMainValidators() {
+    private List<UserDataRule> receiveMainValidators() {
 
-        List<Supplier<UserDataValidator>> supplierValidators = new ArrayList<>();
-        supplierValidators.add(StringUserDataValidator::new);
-        supplierValidators.add(StringNumberUserDataValidator::new);
-        supplierValidators.add(NumberUserDataValidator::new);
-        supplierValidators.add(EmailUserDataValidator::new);
+        List<UserDataRule> supplierValidators = new ArrayList<>();
+        supplierValidators.add(new StringUserDataRuler());
+        supplierValidators.add(new StringNumberUserDataRuler());
+        supplierValidators.add(new NumberUserDataRuler());
+        supplierValidators.add(new EmailUserDataRule());
 
         return supplierValidators;
     }
 
-    private List<Supplier<UserDataValidator>> receiveAddressValidators() {
-        List<Supplier<UserDataValidator>> supplierAddressValidator = new ArrayList<>();
-        supplierAddressValidator.add(AddressUserDataValidator::new);
+    private List<UserDataRule> receiveAddressValidators() {
+        List<UserDataRule> supplierAddressValidator = new ArrayList<>();
+        supplierAddressValidator.add(new AddressUserDataRule());
         return supplierAddressValidator;
     }
 

@@ -1,4 +1,4 @@
-package notebook.models;
+package notebook.model;
 
 public class UserDataAddress {
 

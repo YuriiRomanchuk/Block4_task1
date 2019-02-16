@@ -1,4 +1,4 @@
-package notebook.controllers;
+package notebook.controller;
 
 import notebook.enums.Groups;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class UserDataAggregateController<T> {
 
-    public void InitializeUserDataModel(T userDataObject, Map<String, String> preparedUserData) {
+    public void initializeUserDataModel(T userDataObject, Map<String, String> preparedUserData) {
 
         for (Map.Entry<String, String> entry : preparedUserData.entrySet()) {
             String fieldName = entry.getKey();
@@ -24,7 +24,6 @@ public class UserDataAggregateController<T> {
             } catch (NoSuchFieldException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                 e.printStackTrace();
             }
-
         }
     }
 

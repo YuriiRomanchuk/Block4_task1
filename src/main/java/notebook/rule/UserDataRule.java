@@ -1,8 +1,8 @@
-package notebook.validators;
+package notebook.rule;
 
 import java.util.Map;
 
-public interface UserDataValidator {
+public interface UserDataRule {
 
     String regex = "";
     Map<String, Boolean> obligatoryFieldsName = null;

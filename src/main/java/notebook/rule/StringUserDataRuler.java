@@ -1,14 +1,14 @@
-package notebook.validators;
+package notebook.rule;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class StringUserDataValidator implements UserDataValidator {
+public class StringUserDataRuler implements UserDataRule {
 
     private final String regex = "([A-Za-zа-яА-ЯїЇєЄіІ]+)";
     private Map<String, Boolean> obligatoryFieldsName = new HashMap<>();
 
-    public StringUserDataValidator() {
+    public StringUserDataRuler() {
         obligatoryFieldsName.put("lastName", true);
         obligatoryFieldsName.put("firstName", true);
         obligatoryFieldsName.put("middleName", true);

@@ -1,4 +1,4 @@
-package notebook.models;
+package notebook.model;
 
 import notebook.enums.Groups;
 
@@ -110,7 +110,9 @@ public class UserDataModel {
                 ", homePhoneNumber='" + homePhoneNumber + '\'' + "\n" +
                 ", mobilePhoneNumber='" + mobilePhoneNumber + '\'' + "\n" +
                 ", mobilePhoneNumberSecond='" + mobilePhoneNumberSecond + '\'' + "\n" +
-                ", userDataAddresses='" + "\n" +userDataAddresses + '\'' + "\n" +
+                ", entryDate='" + entryDate + '\'' + "\n" +
+                ", DateOfLastChange='" + DateOfLastChange + '\'' + "\n" +
+                ", userDataAddresses='" + "\n" + userDataAddresses + '\'' + "\n" +
                 '}';
     }
 

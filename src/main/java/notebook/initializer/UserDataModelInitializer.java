@@ -1,8 +1,8 @@
-package notebook.initializers;
+package notebook.initializer;
 
-import notebook.controllers.UserDataAggregateController;
-import notebook.models.UserDataAddress;
-import notebook.models.UserDataModel;
+import notebook.controller.UserDataAggregateController;
+import notebook.model.UserDataAddress;
+import notebook.model.UserDataModel;
 
 import java.util.Date;
 import java.util.List;
@@ -14,7 +14,7 @@ public class UserDataModelInitializer {
 
         UserDataModel userDataModel = new UserDataModel();
         UserDataAggregateController<UserDataModel> userDataModelAggregateController = new UserDataAggregateController<>();
-        userDataModelAggregateController.InitializeUserDataModel(userDataModel, preparedUserData);
+        userDataModelAggregateController.initializeUserDataModel(userDataModel, preparedUserData);
         userDataModel.setUserDataAddresses(userDataAddresses);
         userDataModel.setFullName(userDataModel.getLastName() + " " + userDataModel.getFirstName() + " " + userDataModel.getMiddleName());
 

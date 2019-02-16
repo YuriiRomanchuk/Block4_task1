@@ -1,11 +1,10 @@
-package notebook.controllers;
+package notebook.controller;
 
-import notebook.validators.UserDataValidator;
+import notebook.rule.UserDataRule;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
 public class PrepareDataController {
 
@@ -15,25 +14,24 @@ public class PrepareDataController {
         this.viewDataController = viewDataController;
     }
 
-    public Map<String, String> prepareUserData(List<Supplier<UserDataValidator>> supplierValidator) {
+    public Map<String, String> prepareUserData(List<UserDataRule> supplierValidator) {
 
         Map<String, String> userData = new HashMap<>();
 
-        for (Supplier<UserDataValidator> userDataValidatorSupplier : supplierValidator) {
-            UserDataValidator userDataValidator = userDataValidatorSupplier.get();
-            for (Map.Entry<String, Boolean> entry : userDataValidator.getObligatoryFieldsName().entrySet()) {
+        for (UserDataRule userDataRule : supplierValidator) {
+            for (Map.Entry<String, Boolean> entry : userDataRule.getObligatoryFieldsName().entrySet()) {
                 String fieldName = entry.getKey();
                 Boolean obligatoryField = entry.getValue();
 
                 if (inputNonObligatoryField(obligatoryField, fieldName)) {
-                    userData.put(fieldName, ValidateInputValue(fieldName, userDataValidator.getRegex()));
+                    userData.put(fieldName, validateInputValue(fieldName, userDataRule.getRegex()));
                 }
             }
         }
         return userData;
     }
 
-    private String ValidateInputValue(String fieldName, String regex) {
+    private String validateInputValue(String fieldName, String regex) {
 
         viewDataController.printInputFieldData(fieldName);
 
@@ -51,7 +49,6 @@ public class PrepareDataController {
 
         return fieldData.toString();
     }
-
 
     private boolean inputNonObligatoryField(boolean obligatoryField, String fieldName) {
         if (!obligatoryField) {
