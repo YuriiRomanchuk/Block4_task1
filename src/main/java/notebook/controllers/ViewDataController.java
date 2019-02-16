@@ -5,9 +5,10 @@ import java.util.Scanner;
 
 public class ViewDataController {
 
-    private static final String INPUT_DATA = "Input %s = ";
-    private static final String WRONG_INPUT_DATA = "Wrong input! Repeat please! ";
-    private static final String USER_DATA = "Current user data: \n";
+    private static String INPUT_DATA = "Input %s = ";
+    private static String WRONG_INPUT_DATA = "Wrong input! Repeat please! ";
+    private static String USER_DATA = "Current user data: \n";
+    private static String USER_QUESTION = " %s is not obligatory. Do you want to input value?(1 - yes, 2 or other - no)";
     private Scanner in;
 
     public ViewDataController(InputStream in) {
@@ -28,6 +29,11 @@ public class ViewDataController {
 
     public void printAllUserData(String userData) {
         printMessage(USER_DATA + userData);
+    }
+
+    public int receiveAnswerAboutInputValue(String fieldName) {
+        printMessage(String.format(USER_QUESTION, fieldName));
+        return in.nextInt();
     }
 
     public String inputStringValue(String fieldName) {

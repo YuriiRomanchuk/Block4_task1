@@ -24,13 +24,16 @@ public class PrepareDataController {
             for (Map.Entry<String, Boolean> entry : userDataValidator.getObligatoryFieldsName().entrySet()) {
                 String fieldName = entry.getKey();
                 Boolean obligatoryField = entry.getValue();
-                userData.put(fieldName, ValidateInputValue(fieldName, userDataValidator.getRegex(), obligatoryField));
+
+                if (inputNonObligatoryField(obligatoryField, fieldName)) {
+                    userData.put(fieldName, ValidateInputValue(fieldName, userDataValidator.getRegex()));
+                }
             }
         }
         return userData;
     }
 
-    private String ValidateInputValue(String fieldName, String regex, boolean obligatoryField) {
+    private String ValidateInputValue(String fieldName, String regex) {
 
         viewDataController.printInputFieldData(fieldName);
 
@@ -38,8 +41,10 @@ public class PrepareDataController {
         StringBuilder fieldData = new StringBuilder();
 
         while (!correctValue) {
+
             fieldData.append(viewDataController.inputStringValue(fieldName));
-            correctValue = obligatoryField ? fieldData.toString().matches(regex) : true;
+            correctValue = fieldData.toString().matches(regex);
+
             if (!correctValue) {
                 fieldData.setLength(0);
                 viewDataController.printWrongInputData(fieldName);
@@ -49,4 +54,16 @@ public class PrepareDataController {
         return fieldData.toString();
     }
 
+
+    public boolean inputNonObligatoryField(boolean obligatoryField, String fieldName) {
+
+        if (!obligatoryField) {
+            int answerAboutInput = viewDataController.receiveAnswerAboutInputValue(fieldName);
+            if (answerAboutInput != 1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

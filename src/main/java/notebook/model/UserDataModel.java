@@ -2,7 +2,7 @@ package notebook.model;
 
 import notebook.enums.Groups;
 
-public class UserDataModel {
+public class UserDataModel implements Creator<UserDataModel> {
 
     private String lastName;
     private String firstName;
@@ -83,4 +83,5 @@ public class UserDataModel {
                 ", mobilePhoneNumberSecond='" + mobilePhoneNumberSecond + '\'' + "\n" +
                 '}';
     }
+
 }

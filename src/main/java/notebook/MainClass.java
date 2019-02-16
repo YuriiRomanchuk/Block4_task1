@@ -1,6 +1,7 @@
 package notebook;
 
 import notebook.controllers.ViewDataController;
+import notebook.model.UserDataModel;
 import notebook.model.UserDataModelInitializer;
 
 public class MainClass {
