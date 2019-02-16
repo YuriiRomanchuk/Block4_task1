@@ -28,9 +28,7 @@ public class UserDataAddressInitializer {
         boolean continueCreateAddress = true;
 
         while (continueCreateAddress) {
-
             UserDataAddress userDataAddress = new UserDataAddress();
-
             Map<String, String> preparedUserDataAddress = prepareDataController.prepareUserData(supplierAddressValidator);
             userDataAddressAggregateController.InitializeUserDataModel(userDataAddress, preparedUserDataAddress);
             userDataAddresses.add(userDataAddress);

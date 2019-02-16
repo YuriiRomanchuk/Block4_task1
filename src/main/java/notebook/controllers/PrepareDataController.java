@@ -41,10 +41,8 @@ public class PrepareDataController {
         StringBuilder fieldData = new StringBuilder();
 
         while (!correctValue) {
-
             fieldData.append(viewDataController.inputStringValue(fieldName));
             correctValue = fieldData.toString().matches(regex);
-
             if (!correctValue) {
                 fieldData.setLength(0);
                 viewDataController.printWrongInputData(fieldName);
@@ -55,14 +53,10 @@ public class PrepareDataController {
     }
 
 
-    public boolean inputNonObligatoryField(boolean obligatoryField, String fieldName) {
-
+    private boolean inputNonObligatoryField(boolean obligatoryField, String fieldName) {
         if (!obligatoryField) {
-            if (!viewDataController.receiveAnswerAboutInputValue(fieldName)) {
-                return false;
-            }
+            return viewDataController.receiveAnswerAboutInputValue(fieldName);
         }
-
         return true;
     }
 }

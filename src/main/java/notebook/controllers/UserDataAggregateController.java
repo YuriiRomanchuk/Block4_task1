@@ -19,7 +19,7 @@ public class UserDataAggregateController<T> {
             try {
                 Type fieldType = userDataObject.getClass().getDeclaredField(fieldName).getGenericType();
                 Method fieldMethod = userDataObject.getClass().getDeclaredMethod("set" + firstUpperCase(fieldName),
-                        receiveClassTypeParametrs(fieldValue, fieldType));
+                        receiveClassTypeParameters(fieldType));
                 fieldMethod.invoke(userDataObject, typifyFieldValue(fieldValue, fieldType));
             } catch (NoSuchFieldException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                 e.printStackTrace();
@@ -28,7 +28,7 @@ public class UserDataAggregateController<T> {
         }
     }
 
-    private Class receiveClassTypeParametrs(String fieldValue, Type fieldType) {
+    private Class receiveClassTypeParameters(Type fieldType) {
 
         if (fieldType.equals(Integer.class)) {
             return Integer.class;
