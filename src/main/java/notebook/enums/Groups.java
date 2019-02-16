@@ -1,6 +1,6 @@
 package notebook.enums;
 
-public enum  Groups {
+public enum Groups {
 
-    RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET;
+    ONE, TWO, TREE, FOUR, FIVE, SIX, SEVEN;
 }
