@@ -1,8 +1,10 @@
-package notebook.model;
+package notebook.models;
 
 import notebook.enums.Groups;
 
-public class UserDataModel implements Creator<UserDataModel> {
+import java.util.List;
+
+public class UserDataModel {
 
     private String lastName;
     private String firstName;
@@ -16,7 +18,13 @@ public class UserDataModel implements Creator<UserDataModel> {
     private String homePhoneNumber;
     private String mobilePhoneNumber;
     private String mobilePhoneNumberSecond;
+    private String entryDate;
+    private String DateOfLastChange;
+    private List<UserDataAddress> userDataAddresses;
 
+    public void setUserDataAddresses(List<UserDataAddress> userDataAddresses) {
+        this.userDataAddresses = userDataAddresses;
+    }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
@@ -66,6 +74,27 @@ public class UserDataModel implements Creator<UserDataModel> {
         this.middleName = middleName;
     }
 
+    public void setEntryDate(String entryDate) {
+        this.entryDate = entryDate;
+    }
+
+    public void setDateOfLastChange(String dateOfLastChange) {
+        DateOfLastChange = dateOfLastChange;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+
     @Override
     public String toString() {
         return "UserDataModel{" + "\n" +
@@ -81,7 +110,9 @@ public class UserDataModel implements Creator<UserDataModel> {
                 ", homePhoneNumber='" + homePhoneNumber + '\'' + "\n" +
                 ", mobilePhoneNumber='" + mobilePhoneNumber + '\'' + "\n" +
                 ", mobilePhoneNumberSecond='" + mobilePhoneNumberSecond + '\'' + "\n" +
+                ", userDataAddresses='" + "\n" +userDataAddresses + '\'' + "\n" +
                 '}';
     }
 
 }
+

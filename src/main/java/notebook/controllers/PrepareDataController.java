@@ -58,8 +58,7 @@ public class PrepareDataController {
     public boolean inputNonObligatoryField(boolean obligatoryField, String fieldName) {
 
         if (!obligatoryField) {
-            int answerAboutInput = viewDataController.receiveAnswerAboutInputValue(fieldName);
-            if (answerAboutInput != 1) {
+            if (!viewDataController.receiveAnswerAboutInputValue(fieldName)) {
                 return false;
             }
         }

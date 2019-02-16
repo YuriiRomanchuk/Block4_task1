@@ -1,35 +1,31 @@
-package notebook.model;
+package notebook.controllers;
 
 import notebook.enums.Groups;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.Map;
 
-public class UserDataModelInitializer {
+public class UserDataAggregateController<T> {
 
-    public UserDataModel InitializeUserDataModel(Map<String, String> preparedUserData) {
-
-        UserDataModel userDataModel = new UserDataModel();
-        Class<? extends UserDataModel> userDataModelClass = userDataModel.getClass();
+    public void InitializeUserDataModel(T userDataObject, Map<String, String> preparedUserData) {
 
         for (Map.Entry<String, String> entry : preparedUserData.entrySet()) {
             String fieldName = entry.getKey();
             String fieldValue = entry.getValue();
 
             try {
-                Type fieldType = userDataModel.getClass().getDeclaredField(fieldName).getGenericType();
-                Method fieldMethod = userDataModelClass.getDeclaredMethod("set" + firstUpperCase(fieldName),
+                Type fieldType = userDataObject.getClass().getDeclaredField(fieldName).getGenericType();
+                Method fieldMethod = userDataObject.getClass().getDeclaredMethod("set" + firstUpperCase(fieldName),
                         receiveClassTypeParametrs(fieldValue, fieldType));
-                fieldMethod.invoke(userDataModel, typifyFieldValue(fieldValue, fieldType));
+                fieldMethod.invoke(userDataObject, typifyFieldValue(fieldValue, fieldType));
             } catch (NoSuchFieldException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                 e.printStackTrace();
             }
 
         }
-
-        return userDataModel;
     }
 
     private Class receiveClassTypeParametrs(String fieldValue, Type fieldType) {
@@ -48,7 +44,14 @@ public class UserDataModelInitializer {
         if (fieldType.equals(Integer.class)) {
             return Integer.valueOf(fieldValue);
         } else if (fieldType.equals(Groups.class)) {
-            return Groups.valueOf(fieldValue);
+            try {
+                return Groups.valueOf(fieldValue);
+            } catch (Exception e) {
+                System.out.println(String.format("Invalid group %s! Groups include: ", fieldValue));
+                Arrays.stream(Groups.values()).forEach(g -> System.out.println(g.toString()));
+                e.printStackTrace();
+                return null;
+            }
         }
 
         return fieldValue;
@@ -62,5 +65,4 @@ public class UserDataModelInitializer {
 
         return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
-
 }
