@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class StringUserDataValidator implements UserDataValidator {
 
-    private final String regex = "([A-Za-z]+)";
+    private final String regex = "([A-Za-zа-яА-ЯїЇєЄіІ]+)";
     private Map<String, Boolean> obligatoryFieldsName = new HashMap<>();
 
     public StringUserDataValidator() {

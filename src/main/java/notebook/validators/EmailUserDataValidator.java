@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class EmailUserDataValidator implements UserDataValidator {
 
-    private final String regex = "(\\w+@[a-zA-Z]+?\\.[a-zA-Z]{2,6})";
+    private final String regex = "\\w+@[a-zA-Z]+?\\.[a-zA-Z]{2,6}";
     private Map<String, Boolean> obligatoryFieldsName = new HashMap<>();
 
     public EmailUserDataValidator() {
